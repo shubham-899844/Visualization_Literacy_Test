@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Monthly sales performance by product",
+  "data": {
+    "values": [
+      {"month": "January", "product": "Product A", "sales": 210000},
+      {"month": "January", "product": "Product B", "sales": 180000},
+      {"month": "January", "product": "Product C", "sales": 280000},
+      {"month": "February", "product": "Product A", "sales": 330000},
+      {"month": "February", "product": "Product B", "sales": 270000},
+      {"month": "February", "product": "Product C", "sales": 280000},
+      {"month": "March", "product": "Product A", "sales": 310000},
+      {"month": "March", "product": "Product B", "sales": 330000},
+      {"month": "March", "product": "Product C", "sales": 190000},
+      {"month": "April", "product": "Product A", "sales": 220000},
+      {"month": "April", "product": "Product B", "sales": 230000},
+      {"month": "April", "product": "Product C", "sales": 180000},
+      {"month": "May", "product": "Product A", "sales": 300000},
+      {"month": "May", "product": "Product B", "sales": 240000},
+      {"month": "May", "product": "Product C", "sales": 370000},
+      {"month": "June", "product": "Product A", "sales": 260000},
+      {"month": "June", "product": "Product B", "sales": 270000},
+      {"month": "June", "product": "Product C", "sales": 120000}
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "month", "type": "ordinal", "axis": {"title": "Month"}},
+    "y": {
+      "field": "sales",
+      "type": "quantitative",
+      "axis": {"title": "Sales Amount"}
+    },
+    "color": {
+      "field": "product",
+      "type": "nominal",
+      "scale": {"range": ["#1E1EFF", "#7F7FFF", "#C2C2FF"]},
+      "title": "Product"
+    },
+    "xOffset": {"field": "product"},
+    "tooltip": [
+      {"field": "month", "type": "ordinal"},
+      {"field": "product", "type": "nominal"},
+      {"field": "sales", "type": "quantitative"}
+    ]
+  },
+  "config": {}
+}

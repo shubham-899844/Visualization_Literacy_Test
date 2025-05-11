@@ -1,0 +1,78 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Curved Violin plot of CPE device response times across regions.",
+  "data": {
+    "values": [
+      {"region": "North", "response_time": 120},
+      {"region": "North", "response_time": 130},
+      {"region": "North", "response_time": 110},
+      {"region": "North", "response_time": 125},
+      {"region": "South", "response_time": 150},
+      {"region": "South", "response_time": 145},
+      {"region": "South", "response_time": 160},
+      {"region": "South", "response_time": 155},
+      {"region": "East", "response_time": 100},
+      {"region": "East", "response_time": 105},
+      {"region": "East", "response_time": 95},
+      {"region": "East", "response_time": 98}
+    ]
+  },
+  "facet": {
+    "field": "region",
+    "type": "nominal",
+    "columns": 3,
+    "title": "Curved Violin Plots by Region"
+  },
+  "spec": {
+    "layer": [
+      {
+        "transform": [
+          {"density": "response_time", "extent": [80, 180], "steps": 200}
+        ],
+        "mark": {
+          "type": "area",
+          "interpolate": "monotone",
+          "orient": "horizontal"
+        },
+        "encoding": {
+          "x": {
+            "field": "density",
+            "type": "quantitative",
+            "scale": {"domain": [0, 0.05]},
+            "axis": null
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Response Time (ms)"
+          },
+          "color": {"value": "#4C78A8"},
+          "opacity": {"value": 0.7}
+        }
+      },
+      {
+        "transform": [
+          {"density": "response_time", "extent": [80, 180], "steps": 200},
+          {"calculate": "-datum.density", "as": "neg_density"}
+        ],
+        "mark": {
+          "type": "area",
+          "interpolate": "monotone",
+          "orient": "horizontal"
+        },
+        "encoding": {
+          "x": {
+            "field": "neg_density",
+            "type": "quantitative",
+            "scale": {"domain": [-0.05, 0]},
+            "axis": null
+          },
+          "y": {"field": "value", "type": "quantitative"},
+          "color": {"value": "#4C78A8"},
+          "opacity": {"value": 0.7}
+        }
+      }
+    ]
+  },
+  "config": {"axis": {"grid": false}}
+}
